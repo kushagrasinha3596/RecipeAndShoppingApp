@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
         <img style="max-height: 300px"
-        [src]="imageUrl" alt="" class="img-responsive">
+        [src]="selectedItem.imageUrl" alt="" class="img-responsive">
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h1>Name</h1>
+        <h1>{{selectedItem.name}}</h1>
     </div>
 </div>
 <div class="row">
@@ -23,7 +23,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-       Description
+       {{Description}}
     </div>
 </div>
 <div class="row">

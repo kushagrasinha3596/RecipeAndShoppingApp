@@ -8,10 +8,14 @@ import { Reciepe } from '../../reciepe-book.model';
 })
 export class ReciepeItemComponent implements OnInit {
   @Input() recipe: Reciepe;
+  @Output() itemSelected = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectedItem(){
+    this.itemSelected.emit();
+  }
 }

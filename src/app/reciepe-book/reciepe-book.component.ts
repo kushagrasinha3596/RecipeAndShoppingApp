@@ -8,6 +8,7 @@ import { Reciepe } from './reciepe-book.model';
 })
 export class ReciepeBookComponent implements OnInit {
 
+  itemWasSelected : Reciepe;
   constructor() { }
 
   ngOnInit() {
