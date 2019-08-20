@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Reciepe } from './reciepe-book.model';
 
 @Component({
   selector: 'app-reciepe-book',
