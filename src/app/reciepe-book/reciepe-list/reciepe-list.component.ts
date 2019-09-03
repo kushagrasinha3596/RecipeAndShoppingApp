@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Reciepe } from '../reciepe-book.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-reciepe-list',
@@ -8,17 +9,10 @@ import { Reciepe } from '../reciepe-book.model';
 })
 export class ReciepeListComponent implements OnInit {
 
-  @Output() selectedItemEmit = new EventEmitter<Reciepe>();
-  reciepes:Reciepe[]=[
-    new Reciepe('Sweet Kheer','Made with milk and rice','https://www.vegrecipesofindia.com/wp-content/uploads/2013/10/rice-kheer-recipe-2-500x375.jpg'),
-    new Reciepe('A duplicate Sweet Kheer','Made with milk and rice and dry fruits','https://www.vegrecipesofindia.com/wp-content/uploads/2013/10/rice-kheer-recipe-2-500x375.jpg')
-  ];
-  constructor() { }
+ reciepes : Reciepe[] = [];
+  constructor(private recipeService : RecipeService) { };
 
   ngOnInit() {
-  }
-
-  selectedItem(param: Reciepe){
-    this.selectedItemEmit.emit(param);
+    this.reciepes = this.recipeService.getRecipes();
   }
 }
