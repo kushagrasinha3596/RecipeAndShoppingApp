@@ -1,9 +1,8 @@
+<reciepe-header (selectedEvent)="eventSelected($event)"></reciepe-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <reciepe-header (selectedEvent)="eventSelected($event)"></reciepe-header>
-      <app-reciepe-book *ngIf="desiredEvent === 'recipe'"></app-reciepe-book>
-      <app-shopping-list *ngIf="desiredEvent != 'recipe'"></app-shopping-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
