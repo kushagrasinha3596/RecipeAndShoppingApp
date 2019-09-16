@@ -1,5 +1,5 @@
-<a (click)='selectedItem()'
-style="cursor:pointer"
+<a [routerLink]="[index]"
+style="cursor:pointer" routerLinkActive="active"
  class="list-group-item clearfix">
     <div class="pull-left">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>

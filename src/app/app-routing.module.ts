@@ -7,6 +7,7 @@ import { ReciepeListComponent } from './reciepe-book/reciepe-list/reciepe-list.c
 import { ReciepeItemComponent } from './reciepe-book/reciepe-list/reciepe-item/reciepe-item.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehomepage.component';
+import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
 
 
 const routes: Routes = [
@@ -24,8 +25,16 @@ const routes: Routes = [
         component: RecipehomepageComponent
       },
       {
+        path:'new',
+        component: RecipeeditComponent
+      },
+      {
         path:':id',
         component: ReciepeDetailsComponent
+      },
+      {
+        path:':id/edit',
+        component: RecipeeditComponent
       }
     ]
   },
