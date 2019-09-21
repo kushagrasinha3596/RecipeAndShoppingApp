@@ -1,15 +1,13 @@
 import { Reciepe } from '../reciepe-book/reciepe-book.model';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Ingredients } from '../shared/ingredients.model';
 import { ShoppingService } from '../shopping-list/shopping.service';
 
 @Injectable()
 export class RecipeService{
 
-    selectedRecipe = new EventEmitter<Reciepe>();
-    selectedIngredient = new EventEmitter<Ingredients[]>();
-
     constructor(private shoppingService : ShoppingService){}
+
     private reciepes:Reciepe[]=[
         new Reciepe('Sweet Kheer',
         'Made with milk and rice',

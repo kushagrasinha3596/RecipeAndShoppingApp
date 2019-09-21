@@ -10,14 +10,9 @@ import { RecipeService } from './recipe.service';
 })
 export class ReciepeBookComponent implements OnInit {
 
-  itemWasSelected : Reciepe;
-  constructor(private recipeService : RecipeService) {};
+  constructor() {};
 
   ngOnInit() {
-    console.log("Switched to RecipeBookComponent");
-    this.recipeService.selectedRecipe.subscribe((param : Reciepe)=>{
-      this.itemWasSelected = param;
-    });
   }
 
 }
