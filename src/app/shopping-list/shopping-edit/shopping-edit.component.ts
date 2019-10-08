@@ -41,4 +41,9 @@ export class ShoppingEditComponent implements OnInit {
     this.editMode = false;
     this.userForm.reset();
   }
+
+  resettingForm(){
+    this.userForm.reset();
+    this.editMode = false;
+  }
 }
