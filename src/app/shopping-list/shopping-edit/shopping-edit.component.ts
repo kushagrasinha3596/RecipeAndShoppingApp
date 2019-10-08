@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Ingredients } from 'src/app/shared/ingredients.model';
 import { ShoppingService } from '../shopping.service';
+import { FormGroup, NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
@@ -8,18 +10,33 @@ import { ShoppingService } from '../shopping.service';
 })
 export class ShoppingEditComponent implements OnInit {
 
-  @ViewChild('nameInput',{static:false}) nameIngradient : ElementRef;
-  @ViewChild('amountInput',{static:false}) amountIngradient : ElementRef;
-
+  subscription: Subscription;
+  editItemIndex: number;
+  editMode: boolean = false;
+  @ViewChild('f',{static:false}) userForm: NgForm;
   constructor(private shoppingService : ShoppingService) { }
 
   ngOnInit() {
+    this.shoppingService.editShoppingitem
+    .subscribe((param: number)=>{
+      this.editItemIndex = param;
+      this.editMode = true;
+      const shoppList = this.shoppingService.getIngredientByIndex(this.editItemIndex);
+      this.userForm.setValue({
+        'recipe-name': shoppList.name,
+        'amount': shoppList.amount
+      });
+    });
   }
 
-  addItem(){
-    const nameOfIngradient = this.nameIngradient.nativeElement.value;
-    const amountOfIngradient = parseInt(this.amountIngradient.nativeElement.value,10);
+  addItem(param: FormGroup){
+    const nameOfIngradient = param.value['recipe-name']; 
+    const amountOfIngradient = parseInt(param.value['amount'],10);
     const itemAdded = new Ingredients(nameOfIngradient, amountOfIngradient);
-    this.shoppingService.addIngredients(itemAdded);
+    if(this.editMode){
+      this.shoppingService.updateIngredient(this.editItemIndex,itemAdded);
+    }else{
+      this.shoppingService.addIngredients(itemAdded);
+    }
   }
 }
