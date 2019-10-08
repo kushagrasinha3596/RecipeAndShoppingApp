@@ -42,6 +42,11 @@ export class ShoppingEditComponent implements OnInit {
     this.userForm.reset();
   }
 
+  deleteShoppingItem(){
+    this.shoppingService.deleteItemByIndex(this.editItemIndex);
+    this.resettingForm();
+  }
+
   resettingForm(){
     this.userForm.reset();
     this.editMode = false;

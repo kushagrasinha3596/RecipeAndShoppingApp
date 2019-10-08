@@ -24,6 +24,11 @@ export class ShoppingService{
         this.ingredientsChanged.next(this.ingredients.slice());
       }
 
+      deleteItemByIndex(index: number){
+        this.ingredients.splice(index,1);
+        this.ingredientsChanged.next(this.ingredients.slice());
+      }
+
       addIngredients(ingredient: Ingredients){
         this.ingredients.push(ingredient);
         // When switching from the recipe details view to the shopping list view the component is destroyed and initialized anyway. 
