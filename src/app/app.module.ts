@@ -15,7 +15,7 @@ import { ShoppingService } from './shopping-list/shopping.service';
 import { RecipeService } from './reciepe-book/recipe.service';
 import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehomepage.component';
 import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +35,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ShoppingService, RecipeService],
   bootstrap: [AppComponent]
