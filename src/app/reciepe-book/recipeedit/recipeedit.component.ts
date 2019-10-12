@@ -45,7 +45,6 @@ export class RecipeeditComponent implements OnInit {
   }
 
   private initForm(){
-    debugger
     let recipeName ='';
     let recipeImagePath ='';
     let recipeDescription ='';
@@ -77,7 +76,6 @@ export class RecipeeditComponent implements OnInit {
   }
 
   addNewIngredient(){
-    debugger
     (<FormArray>this.recipeForm.get('ingredients')).push(new FormGroup({
       'name': new FormControl(null, Validators.required),
       'amount': new FormControl(null, [
