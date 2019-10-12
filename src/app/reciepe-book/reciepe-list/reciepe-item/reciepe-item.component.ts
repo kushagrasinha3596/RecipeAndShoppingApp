@@ -11,7 +11,6 @@ export class ReciepeItemComponent implements OnInit {
   @Input() index : number;
 
   ngOnInit() {
-    debugger
     console.log("ngOnInit() of RecipeItemComponent ******** "+this.index+" "+this.recipe);
   }
 

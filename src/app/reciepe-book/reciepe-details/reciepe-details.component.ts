@@ -17,14 +17,16 @@ export class ReciepeDetailsComponent implements OnInit {
     private router : Router) {}
 
   ngOnInit() {
-    debugger
-    console.log("Kushagra :"+this.selectedItem);
+    console.log("Recipe Details Component ngOnInit() :"+this.selectedItem);
     this.route.params.subscribe((param : Params)=>{
       this.recipeId = +param['id'];
       this.selectedItem = this.recipeService.getSingleRecipeByIndex(this.recipeId);
     });
   }
 
+  deleteRecipe(){
+    this.recipeService.deleteRecipe(this.recipeId);
+  }
   addToShoppingList(){
     this.recipeService.addIngredient(this.selectedItem.ingredients);
   }
