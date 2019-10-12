@@ -9,8 +9,6 @@ export class RecipeService{
 
     recipesChanged = new Subject<Reciepe[]>();
 
-    constructor(private shoppingService : ShoppingService){}
-
     private reciepes:Reciepe[]=[
         new Reciepe('Sweet Kheer',
         'Made with milk and rice',
@@ -23,6 +21,10 @@ export class RecipeService{
         [new Ingredients("Rice",2),new Ingredients("Milk",5)])
       ];
 
+      constructor(private shoppingService : ShoppingService){
+        console.log("Constructor of RecipeService");
+      }
+      
       getRecipes(){
           return this.reciepes.slice();
       }
