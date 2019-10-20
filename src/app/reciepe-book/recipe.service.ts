@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Ingredients } from '../shared/ingredients.model';
 import { ShoppingService } from '../shopping-list/shopping.service';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class RecipeService{
@@ -21,10 +22,15 @@ export class RecipeService{
         [new Ingredients("Rice",2),new Ingredients("Milk",5)])
       ];
 
-      constructor(private shoppingService : ShoppingService){
+      constructor(private shoppingService : ShoppingService,
+        private http: HttpClient){
         console.log("Constructor of RecipeService");
       }
       
+      storeRecipeToDatabaseServer(){
+        return this.http.put("https://recipeandshopping-recipebook.firebaseio.com/recipe.json", this.reciepes);
+      }
+
       getRecipes(){
           return this.reciepes.slice();
       }
