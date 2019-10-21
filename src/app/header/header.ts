@@ -17,4 +17,13 @@ export class ReciepeHeader{
             console.log("Problem in storing recipe data to database server");
         });
     }
+
+    FetchDataFromServer(){
+        this.recipeService.fetchRecipeFromDatabaseServer()
+        .subscribe((data)=>{
+            debugger
+            console.log(data);
+            this.recipeService.populateRecipeFromServer(data);
+        });
+    }
 }

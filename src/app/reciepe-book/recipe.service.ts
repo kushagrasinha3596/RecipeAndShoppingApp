@@ -31,8 +31,17 @@ export class RecipeService{
         return this.http.put("https://recipeandshopping-recipebook.firebaseio.com/recipe.json", this.reciepes);
       }
 
+      fetchRecipeFromDatabaseServer(){
+        return this.http.get('https://recipeandshopping-recipebook.firebaseio.com/recipe.json');
+      }
+
       getRecipes(){
           return this.reciepes.slice();
+      }
+
+      populateRecipeFromServer(param){
+        this.reciepes = param;
+        this.recipesChanged.next(this.reciepes.slice());
       }
 
       getSingleRecipeByIndex(index: number){
