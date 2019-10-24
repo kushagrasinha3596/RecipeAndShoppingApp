@@ -16,6 +16,7 @@ import { RecipeService } from './reciepe-book/recipe.service';
 import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehomepage.component';
 import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
 
 
 
@@ -40,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ShoppingService, RecipeService],
+  providers: [ShoppingService, RecipeService, RecipeResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

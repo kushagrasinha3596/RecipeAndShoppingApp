@@ -4,23 +4,26 @@ import { Ingredients } from '../shared/ingredients.model';
 import { ShoppingService } from '../shopping-list/shopping.service';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class RecipeService{
 
     recipesChanged = new Subject<Reciepe[]>();
 
-    private reciepes:Reciepe[]=[
-        new Reciepe('Sweet Kheer',
-        'Made with milk and rice',
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2013/10/rice-kheer-recipe-2-500x375.jpg',
-        [new Ingredients("Rice",2),new Ingredients("Milk",5)]),
+    // private reciepes:Reciepe[]=[
+    //     new Reciepe('Sweet Kheer',
+    //     'Made with milk and rice',
+    //     'https://www.vegrecipesofindia.com/wp-content/uploads/2013/10/rice-kheer-recipe-2-500x375.jpg',
+    //     [new Ingredients("Rice",2),new Ingredients("Milk",5)]),
 
-        new Reciepe('A duplicate Sweet Kheer',
-        'Made with milk and rice and dry fruits',
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2013/10/rice-kheer-recipe-2-500x375.jpg',
-        [new Ingredients("Rice",2),new Ingredients("Milk",5)])
-      ];
+    //     new Reciepe('A duplicate Sweet Kheer',
+    //     'Made with milk and rice and dry fruits',
+    //     'https://www.vegrecipesofindia.com/wp-content/uploads/2013/10/rice-kheer-recipe-2-500x375.jpg',
+    //     [new Ingredients("Rice",2),new Ingredients("Milk",5)])
+    //   ];
+
+    private reciepes: Reciepe[] = [];
 
       constructor(private shoppingService : ShoppingService,
         private http: HttpClient){
@@ -32,9 +35,25 @@ export class RecipeService{
       }
 
       fetchRecipeFromDatabaseServer(){
-        return this.http.get('https://recipeandshopping-recipebook.firebaseio.com/recipe.json');
+        return this.http.get<Reciepe[]>('https://recipeandshopping-recipebook.firebaseio.com/recipe.json')
+        .pipe(map((data : Reciepe[])=>{
+          return data.map((recipe)=>{
+            var obj = {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : []
+            };
+            return obj;
+          });  
+        }),
+        tap((recipe: Reciepe[])=>{
+          this.iniTializeRecipeArray(recipe);
+        }));
       }
 
+      iniTializeRecipeArray(recipe: Reciepe[]){
+        this.reciepes = recipe;
+        this.recipesChanged.next(this.reciepes.slice());
+      }
       getRecipes(){
           return this.reciepes.slice();
       }

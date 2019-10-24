@@ -8,6 +8,7 @@ import { ReciepeItemComponent } from './reciepe-book/reciepe-list/reciepe-item/r
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehomepage.component';
 import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
+import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {
     path:'recipes',
     component: ReciepeBookComponent,
+    resolve: [RecipeResolver],
     children : [
       {
         path: '', 
