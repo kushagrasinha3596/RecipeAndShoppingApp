@@ -9,6 +9,7 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehomepage.component';
 import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
 import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path:'shoppinglist',
     component: ShoppingListComponent
+  },
+  {
+    path:'auth',
+    component: AuthComponent
   }
 ];
 

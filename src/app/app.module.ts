@@ -17,6 +17,7 @@ import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehom
 import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -33,6 +34,7 @@ import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
     DropdownDirective,
     RecipehomepageComponent,
     RecipeeditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
