@@ -1,7 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="column" class="col-xs-12 col-md-6">
-            <form #authForm="ngForm">
+            <div *ngIf="signuploader == true">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="signuploader == false">
                     <div class="form-group">
                             <label for="email">Email</label>
                             <input 

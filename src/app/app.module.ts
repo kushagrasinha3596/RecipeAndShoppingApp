@@ -18,6 +18,8 @@ import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth/auth.service';
+import { LoadingSpinnerComponent } from './shared/spinner/loading-spinner.component';
 
 
 
@@ -34,7 +36,8 @@ import { AuthComponent } from './auth/auth.component';
     DropdownDirective,
     RecipehomepageComponent,
     RecipeeditComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { AuthComponent } from './auth/auth.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ShoppingService, RecipeService, RecipeResolver],
+  providers: [ShoppingService, RecipeService, RecipeResolver, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
