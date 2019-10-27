@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ɵNG_COMPONENT_DEF } from '@angular/core';
 import { RecipeService } from '../reciepe-book/recipe.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
     selector : 'reciepe-header',
     templateUrl : './header.html',
     styleUrls : ['./header.css']
 })
-export class ReciepeHeader{
+export class ReciepeHeader implements OnInit, OnDestroy{
     
-    constructor(private recipeService: RecipeService){}
+    private userSubs: Subscription;
+    isAuthenticated: boolean = false;
+    
+    constructor(private recipeService: RecipeService,
+        private authService: AuthService){}
+
+        ngOnInit(){
+            this.userSubs = this.authService.user.subscribe((user)=>{
+             this.isAuthenticated = user ? true: false;
+            });
+        }
 
     SaveDataToServer(){
         this.recipeService.storeRecipeToDatabaseServer()
@@ -16,14 +28,21 @@ export class ReciepeHeader{
         },(error)=>{
             console.log("Problem in storing recipe data to database server");
         });
+
+        
     }
 
     FetchDataFromServer(){
+        debugger
         this.recipeService.fetchRecipeFromDatabaseServer()
         .subscribe((data)=>{
             debugger
             console.log(data);
             this.recipeService.populateRecipeFromServer(data);
         });
+    }
+
+    ngOnDestroy(){
+        this.userSubs.unsubscribe();
     }
 }

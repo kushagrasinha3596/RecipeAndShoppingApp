@@ -1,17 +1,24 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html'
 })
-export class AuthComponent{
+export class AuthComponent implements OnInit{
 
     signuploader: boolean;
     isLoginMode: boolean;
+    error: string = null;
 
-    constructor(private authService: AuthService){
+    ngOnInit(){
+        this.error = null;
+    }
+
+    constructor(private authService: AuthService,
+                private router: Router){
         this.signuploader = false;
     }
 
@@ -27,14 +34,23 @@ export class AuthComponent{
         let password = form.value.password;
         this.signuploader = true;
         if(this.isLoginMode){
-            //
+            this.authService.login(email, password)
+            .subscribe((res)=>{
+                console.log(res);
+                this.signuploader = false;
+                this.router.navigate(['/recipes']);
+            },(error)=>{
+                this.error = "Error in logging user";
+                this.signuploader = false;
+            });
         }else{
             this.authService.signUp(email, password)
             .subscribe((res)=>{
                 console.log(res);
                 this.signuploader = false;
+                this.router.navigate(['/recipes']);
             }, (error)=>{
-                console.log("Error in registering user");
+                this.error = "Error in creating new user";
                 this.signuploader = false;
             });
         }

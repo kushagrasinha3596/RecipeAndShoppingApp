@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Ingredients } from '../shared/ingredients.model';
 import { ShoppingService } from '../shopping-list/shopping.service';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class RecipeService{
@@ -26,7 +27,8 @@ export class RecipeService{
     private reciepes: Reciepe[] = [];
 
       constructor(private shoppingService : ShoppingService,
-        private http: HttpClient){
+        private http: HttpClient,
+        private authService: AuthService){
         console.log("Constructor of RecipeService");
       }
       
@@ -35,19 +37,31 @@ export class RecipeService{
       }
 
       fetchRecipeFromDatabaseServer(){
-        return this.http.get<Reciepe[]>('https://recipeandshopping-recipebook.firebaseio.com/recipe.json')
-        .pipe(map((data : Reciepe[])=>{
-          return data.map((recipe)=>{
-            var obj = {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
-            return obj;
-          });  
-        }),
-        tap((recipe: Reciepe[])=>{
-          this.iniTializeRecipeArray(recipe);
-        }));
+        return this.authService.user
+        .pipe(
+          take(1),
+          exhaustMap((user)=>{
+            debugger
+            return this.http.get<Reciepe[]>('https://recipeandshopping-recipebook.firebaseio.com/recipe.json',
+            {
+              params: new HttpParams().set('auth', user.token)
+            }
+           );
+          }),
+          map((data : Reciepe[])=>{
+            return data.map((recipe)=>{
+              var obj = {
+                ...recipe,
+                ingredients: recipe.ingredients ? recipe.ingredients : []
+              };
+              return obj;
+            });  
+          }),
+          tap((recipe: Reciepe[])=>{
+            
+            this.iniTializeRecipeArray(recipe);
+          })
+          );
       }
 
       iniTializeRecipeArray(recipe: Reciepe[]){

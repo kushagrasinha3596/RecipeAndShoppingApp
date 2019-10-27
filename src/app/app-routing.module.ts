@@ -21,7 +21,6 @@ const routes: Routes = [
   {
     path:'recipes',
     component: ReciepeBookComponent,
-    resolve: [RecipeResolver],
     children : [
       {
         path: '', 
@@ -33,11 +32,13 @@ const routes: Routes = [
       },
       {
         path:':id',
-        component: ReciepeDetailsComponent
+        component: ReciepeDetailsComponent,
+        resolve: [RecipeResolver]
       },
       {
         path:':id/edit',
-        component: RecipeeditComponent
+        component: RecipeeditComponent,
+        resolve: [RecipeResolver]
       }
     ]
   },
