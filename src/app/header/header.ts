@@ -33,13 +33,15 @@ export class ReciepeHeader implements OnInit, OnDestroy{
     }
 
     FetchDataFromServer(){
-        debugger
         this.recipeService.fetchRecipeFromDatabaseServer()
         .subscribe((data)=>{
-            debugger
             console.log(data);
             this.recipeService.populateRecipeFromServer(data);
         });
+    }
+
+    onLogout(){
+        this.authService.logout();
     }
 
     ngOnDestroy(){

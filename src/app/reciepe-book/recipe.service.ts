@@ -41,7 +41,6 @@ export class RecipeService{
         .pipe(
           take(1),
           exhaustMap((user)=>{
-            debugger
             return this.http.get<Reciepe[]>('https://recipeandshopping-recipebook.firebaseio.com/recipe.json',
             {
               params: new HttpParams().set('auth', user.token)
