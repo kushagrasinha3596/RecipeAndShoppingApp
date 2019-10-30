@@ -10,6 +10,7 @@ import { RecipehomepageComponent } from './reciepe-book/recipehomepage/recipehom
 import { RecipeeditComponent } from './reciepe-book/recipeedit/recipeedit.component';
 import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/authguard';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {
     path:'recipes',
     component: ReciepeBookComponent,
+    canActivate: [AuthGuard],
     children : [
       {
         path: '', 

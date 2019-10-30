@@ -20,6 +20,7 @@ import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
 import { LoadingSpinnerComponent } from './shared/spinner/loading-spinner.component';
+import { AuthGuard } from './auth/authguard';
 
 
 
@@ -46,7 +47,7 @@ import { LoadingSpinnerComponent } from './shared/spinner/loading-spinner.compon
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ShoppingService, RecipeService, RecipeResolver, AuthService],
+  providers: [ShoppingService, RecipeService, RecipeResolver, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
