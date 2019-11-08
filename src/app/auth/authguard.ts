@@ -10,7 +10,6 @@ export class AuthGuard implements CanActivate{
         private router: Router){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Promise<boolean> | Observable<boolean>{
-        debugger
           let res = this.authService.user.pipe(
             map(userData =>{
                 if(!!userData){

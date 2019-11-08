@@ -21,6 +21,8 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
 import { LoadingSpinnerComponent } from './shared/spinner/loading-spinner.component';
 import { AuthGuard } from './auth/authguard';
+import { AlertComponent } from './shared/alert-component/alert.component';
+import { AlertComponentHelperDirective } from './shared/alertcomponent-helper.directive.ts/alertcomponent-helper.directive';
 
 
 
@@ -38,7 +40,9 @@ import { AuthGuard } from './auth/authguard';
     RecipehomepageComponent,
     RecipeeditComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AlertComponent,
+    AlertComponentHelperDirective
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,7 @@ import { AuthGuard } from './auth/authguard';
     HttpClientModule
   ],
   providers: [ShoppingService, RecipeService, RecipeResolver, AuthService, AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
