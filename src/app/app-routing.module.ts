@@ -20,10 +20,6 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
-    path:'shoppinglist',
-    component: ShoppingListComponent
-  },
-  {
     path:'auth',
     component: AuthComponent
   }
