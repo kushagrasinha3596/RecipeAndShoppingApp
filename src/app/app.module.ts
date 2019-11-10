@@ -23,6 +23,7 @@ import { LoadingSpinnerComponent } from './shared/spinner/loading-spinner.compon
 import { AuthGuard } from './auth/authguard';
 import { AlertComponent } from './shared/alert-component/alert.component';
 import { AlertComponentHelperDirective } from './shared/alertcomponent-helper.directive.ts/alertcomponent-helper.directive';
+import { RecipeModuleClass } from './reciepe-book/recipe-module';
 
 
 
@@ -30,15 +31,9 @@ import { AlertComponentHelperDirective } from './shared/alertcomponent-helper.di
   declarations: [
     AppComponent,
     ReciepeHeader,
-    ReciepeBookComponent,
-    ReciepeListComponent,
-    ReciepeItemComponent,
-    ReciepeDetailsComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    RecipehomepageComponent,
-    RecipeeditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent,
@@ -49,7 +44,8 @@ import { AlertComponentHelperDirective } from './shared/alertcomponent-helper.di
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RecipeModuleClass
   ],
   providers: [ShoppingService, RecipeService, RecipeResolver, AuthService, AuthGuard],
   bootstrap: [AppComponent],
