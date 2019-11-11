@@ -9,10 +9,7 @@ import { RecipeService } from './reciepe-book/recipe.service';
 import { RecipeResolver } from './reciepe-book/recipe-resolver.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/authguard';
-import { RecipeModuleClass } from './reciepe-book/recipe-module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -23,10 +20,7 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RecipeModuleClass,
-    ShoppingListModule,
-    SharedModule,
-    AuthModule
+    SharedModule
   ],
   providers: [ShoppingService, RecipeService, RecipeResolver, AuthService, AuthGuard],
   bootstrap: [AppComponent]

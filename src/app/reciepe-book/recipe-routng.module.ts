@@ -8,7 +8,7 @@ import { ReciepeDetailsComponent } from './reciepe-details/reciepe-details.compo
 import { RecipeResolver } from './recipe-resolver.service';
 const routes: Routes = [
     {
-        path: 'recipes',
+        path: '',
         component: ReciepeBookComponent,
         canActivate: [AuthGuard],
         children: [
