@@ -29,7 +29,7 @@ export class ShoppingEditComponent implements OnInit {
     });
   }
 
-  addItem(param: FormGroup){
+  addItem(param: any){
     const nameOfIngradient = param.value['recipe-name']; 
     const amountOfIngradient = parseInt(param.value['amount'],10);
     const itemAdded = new Ingredients(nameOfIngradient, amountOfIngradient);
